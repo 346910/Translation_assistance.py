@@ -40,7 +40,7 @@ def translate(text):
 
 st.title('文本翻译助手')
 user_prompt = st.text_input(label='',placeholder='请输入要翻译的文本：',width = 640)
-languages =st.multiselect(label='请选择要翻译的语言：', options=['英文','中文','日文','韩文','法文','德文'],placeholder='点击选择要翻译的语言')
+languages =st.multiselect(label='请选择要翻译的语言：', options=['英文','中文','日文','韩文','法文','德文','韩文','西班牙文','葡萄牙文','意大利文','俄文','土耳其文','波兰文','荷兰文','瑞典文','挪威文','丹麦文','芬兰文','捷克文'],placeholder='点击选择要翻译的语言')
 ok_button = st.button("点击翻译",type="primary")
 
 if ok_button and user_prompt.strip():
