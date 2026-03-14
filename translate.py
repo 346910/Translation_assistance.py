@@ -42,10 +42,13 @@ st.title('文本翻译助手')
 user_prompt = st.text_input(label='',placeholder='请输入要翻译的文本：',width = 640)
 ok_button = st.button("点击翻译",type="primary")
 if ok_button and user_prompt.strip():
-    try:
-        with st.spinner("翻译中..."):
-            translate(user_prompt)
-            st.success("翻译完成！")
-    except Exception as e:
-        st.error("请检查你的Key是否正确配置")
-
+    if languages:
+        try:
+            try:
+                with st.spinner("翻译中..."):
+                    translate(user_prompt)
+                    st.success("翻译完成！")
+            except Exception as e:
+                st.error("请检查你的Key是否正确配置")
+        except Exception as e:
+            st.error("请选择翻译的语言")
