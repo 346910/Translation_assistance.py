@@ -15,7 +15,7 @@ with st.sidebar:
         model_options = ['deepseek-chat', 'deep-reasoner']
     model_name = st.selectbox(label='请选择要使用的模型：', options=model_options)
     api_key = st.text_input(label='请输入你的Key：', type='password')
-    language = st.selectbox(label='请选择要翻译的语言：', options=['英文','日文','韩文','法文','德文'])
+    languages =st.multiselect(label='请选择要翻译的语言：', options=['英文','中文','日文','韩文','法文','德文'],placeholder='点击选择要翻译的语言')
 
 def translate(text):
     set_llm_cache(SQLiteCache(database_path=".langchain.db"))
@@ -34,8 +34,9 @@ def translate(text):
         ("user",'请将下面的内容翻译成{language}:\n{text}')
         ])
     chain = prompt | llm
-    msg = chain.invoke({'language':language,'text':text})
-    st.write(f"{language}翻译：{msg.content}")
+    for language in languages:
+        msg = chain.invoke({'language':language,'text':text})
+        st.write(f"{language}翻译：{msg.content}")
 
 st.title('文本翻译助手')
 user_prompt = st.text_input(label='',placeholder='请输入要翻译的文本：',width = 640)
