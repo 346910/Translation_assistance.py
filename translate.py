@@ -30,7 +30,7 @@ def translate(text):
     )
 
     prompt = ChatPromptTemplate.from_messages([
-        ("system", "你是一个专业的翻译助手，擅长给出信达雅的翻译"),
+        ("system", "你是一个专业的翻译助手，如果输入的{text}是中文，{language}也是中文，就直接输出{text}!!!"),
         ("user",'请将下面的内容翻译成{language}:\n{text}')
         ])
     chain = prompt | llm
